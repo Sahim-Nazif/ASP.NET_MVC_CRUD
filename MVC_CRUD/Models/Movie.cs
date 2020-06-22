@@ -16,6 +16,6 @@ namespace MVC_CRUD.Models
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
     }
 }
