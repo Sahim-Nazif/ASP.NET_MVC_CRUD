@@ -27,6 +27,20 @@ namespace MVC_CRUD.Controllers
         {
             return Json(new { data = await _db.Movies.ToListAsync() });
         }
+        [HttpDelete]
+        public async Task<IActionResult>Delete( int id)
+        {
+            //retrieving the movie from DB
+            var movieFromDB = await _db.Movies.FirstOrDefaultAsync(m => m.Id == id);
+            if (movieFromDB==null)
+            {
+                return Json(new { success = false, message = "Error Occured when Deleting Movie" });
+
+            }
+            _db.Movies.Remove(movieFromDB);
+            await _db.SaveChangesAsync();
+            return Json(new { success = true, message = "Movie Deleted Successfully!" });
+        }
         #endregion
     }
 }
